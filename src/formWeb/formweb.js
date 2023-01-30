@@ -24,7 +24,7 @@ const CompFormWeb = () => {
 
 
     const EnviarDatos = () => {
-        const texto = ('_______________________________________________________', +
+       /* const texto = ('_______________________________________________________', +
             'Estimado Afectado',
             'la siguiente es la informacion que no acaba de enviar:', +
             'Datos del Afectado:', +
@@ -47,7 +47,7 @@ const CompFormWeb = () => {
             'Descripción de lo sucedido:', +
             +descH, +
             '___________________________________________________', +
-            'Numero de consulta: 20023')
+            'Numero de consulta: 20023')*/
 
         alert('Numero de consulta: 20023, pronto recibira un correo')
     }
