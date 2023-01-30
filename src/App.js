@@ -1,24 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import CompFormWeb from './formWeb/formweb.js';
+import CompHead from './formWeb/head.js';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+      <CompHead></CompHead>
+      <CompFormWeb></CompFormWeb>
+    </div >
   );
 }
 
