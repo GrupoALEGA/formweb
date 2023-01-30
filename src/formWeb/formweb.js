@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import axios from 'axios'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap';
 
 
 //Imports para el calendario
