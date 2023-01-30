@@ -3,18 +3,18 @@
   "name": "Create React App Sample",
   "icons": [
     {
-      "src": "logo_meic.jpg",
+      "src": "icono_logo_meic.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/jpg"
     },
     {
-      "src": "logo_meic.jpg",
-      "type": "image/jpg",
+      "src": "icono_logo_meic.jpg",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo_meic.jpg",
-      "type": "image/jpg",
+      "src": "icono_logo_meic.jpg",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
