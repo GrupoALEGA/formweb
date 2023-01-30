@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import axios from 'axios'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Label } from 'reactstrap';
 
 
 //Imports para el calendario
@@ -9,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css"
 import es from 'date-fns/locale/es'
 
 
-const URI = 'http://127.0.0.1:4002/'
+const URI = 'https://fwmback-production.up.railway.app/'
 
 const CompFormWeb = () => {
     //#region UseStates
@@ -52,8 +53,7 @@ const CompFormWeb = () => {
         window.open(texto)
     }
 
-
-
+    
     //#region useStates de los select
     //useState de datos
     const [ prov, setProv ] = useState([])
