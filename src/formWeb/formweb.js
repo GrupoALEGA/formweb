@@ -49,7 +49,7 @@ const CompFormWeb = () => {
             '___________________________________________________', +
             'Numero de consulta: 20023')
 
-        window.open(texto)
+        alert('Numero de consulta: 20023, pronto recibira un correo')
     }
 
     
