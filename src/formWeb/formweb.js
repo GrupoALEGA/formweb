@@ -23,32 +23,7 @@ const CompFormWeb = () => {
     const [ token, setToken ] = useState(null)
 
 
-    const EnviarDatos = () => {
-       /* const texto = ('_______________________________________________________', +
-            'Estimado Afectado',
-            'la siguiente es la informacion que no acaba de enviar:', +
-            'Datos del Afectado:', +
-            'Tipo de identificacion: ' + tdiA, +
-            'Numero de identificaion: ' + ndiA, +
-            'Nombre completo: ' + nombA + ' ' + apell1A + ' ' + apell2A, +
-            ' ', +
-            'Correo: ' + email + ' Telefono: ' + tel, +
-            'Ubicacion Geografica',
-            'Provincia: ' + prov + ' Canton: ' + cant + ' Distrito: ' + dist, +
-            '_________________________________________________ ', +
-            ' ', +
-            'Datos del Comerciante', +
-            'Nombre: ' + nombC + ' ' + apell1C + ' ' + apell2C, +
-            'Tipo de identificacion: ' + tdiA, +
-            'Numero de identificaion: ' + ndiA, +
-            '__________________________________________________', +
-            'Datos del Evento:', +
-            'Fecha del suceso: ' + fchaHech + ' Garantia: ' + fchaGar, +
-            'Descripción de lo sucedido:', +
-            +descH, +
-            '___________________________________________________', +
-            'Numero de consulta: 20023')*/
-
+    const EnviarDatos = () => {    
         alert('Numero de consulta: 20023, pronto recibira un correo')
     }
 
