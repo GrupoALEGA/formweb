@@ -23,11 +23,11 @@ const CompFormWeb = () => {
     const [ token, setToken ] = useState(null)
 
 
-    const EnviarDatos = () => {    
+    const EnviarDatos = () => {
         alert('Numero de consulta: 20023, pronto recibira un correo')
     }
 
-    
+
     //#region useStates de los select
     //useState de datos
     const [ prov, setProv ] = useState([])
@@ -182,7 +182,7 @@ const CompFormWeb = () => {
                 break
 
             case 3:
-                setlblinputName("Nombre de Fantacia")
+                setlblinputName("Nombre de Fantasía")
                 setonlyRnombA(true)
                 setonlyRapell1A(true)
                 setonlyRapell2A(true)
@@ -222,7 +222,7 @@ const CompFormWeb = () => {
 
         switch (valor) {
             case 1:
-                setlblinputName("Nombre")
+                setlblinputNameC("Nombre")
                 setonlyRnombC(true)
                 setonlyRapell1C(true)
                 setonlyRapell2C(true)
@@ -232,7 +232,7 @@ const CompFormWeb = () => {
                 break
 
             case 2:
-                setlblinputName("Nombre")
+                setlblinputNameC("Nombre")
                 setonlyRnombC(false)
                 setonlyRapell1C(false)
                 setonlyRapell2C(false)
@@ -242,7 +242,7 @@ const CompFormWeb = () => {
                 break
 
             case 3:
-                setlblinputNameC("Nombre de Fantacia")
+                setlblinputNameC("Nombre de Fantasía")
                 setonlyRnombC(true)
                 setonlyRapell1C(true)
                 setonlyRapell2C(true)
@@ -254,7 +254,7 @@ const CompFormWeb = () => {
                 break
 
             case 4:
-                setlblinputName("Nombre")
+                setlblinputNameC("Nombre")
                 setonlyRnombC(false)
                 setonlyRapell1C(false)
                 setonlyRapell2C(false)
@@ -466,6 +466,12 @@ const CompFormWeb = () => {
                 ValidarinputApp2()
             } else {
                 setidClValid("is-invalid")
+                setnClValid("is-invalid")
+                setpaClValid("is-invalid")
+                setsaClValid("is-invalid")
+                setnombA('')
+                setapell1A('')
+                setapell2A('')
                 document.getElementById("errorCed").innerHTML = ""
             }
         } else if (ub == 2) {
@@ -478,17 +484,24 @@ const CompFormWeb = () => {
         console.log('Estamos en validarInputCedC')
         const valor = val
         setndiC(valor)
-        ValidarinputNombC()
-        ValidarinputApp1C()
-        ValidarinputApp2C()
+
         if (ub == 2) {
             const resp = (/^[0-9]{6,30}$/.test(valor))
             if ((resp) && (valor.toString().length >= 6)) {
                 setidClValidC("is-valid")
                 cargaDatosComer(val, ub)
+                ValidarinputNombC()
+                ValidarinputApp1C()
+                ValidarinputApp2C()
                 document.getElementById("errorCed").innerHTML = "Numero de identificacion valido"
             } else {
                 setidClValidC("is-invalid")
+                setnClValidC("is-invalid")
+                setpaClValidC("is-invalid")
+                setsaClValidC("is-invalid")
+                setnombC('')
+                setapell1C('')
+                setapell2C('')
                 document.getElementById("errorCed").innerHTML = ""
             }
         } else if (ub == 1) {
@@ -646,13 +659,10 @@ const CompFormWeb = () => {
         const ub = 2
 
         if ((val != undefined) && (val.toString().length >= 6)) {
-            console.log('Valor de ub = ' + ub + ' val es = ' + val)
             if (selectNidC == 1) {
-                console.log("Persona en list Comer")
                 setndiA(val)
                 cargarDatosP(val, ub)
             } if (selectNidC == 3) {
-                console.log("Comer en list Comer")
                 setndiC(val)
                 cargarDatosC(val, ub)
             }
