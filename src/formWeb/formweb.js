@@ -790,8 +790,8 @@ const CompFormWeb = () => {
                     </div>
                     <div className="col-md-2">
                         <label htmlFor="input_TIDC" className="form-label">Tipo de identificación</label>
-                        <select name="vtidc" id="input_TIDC" className="form-select" disabled={dehabil} onChange={(e) => input_TIDCchange(e.target.selectedIndex)} required>
-                            <option defaultValue="" disabled>Seleccione...</option>
+                        <select name="vtidc" id="input_TIDC" defaultValue={selectNidC} className="form-select" disabled={dehabil} onChange={(e) => input_TIDCchange(e.target.selectedIndex)} required>
+                        <option defaultValue="DEFAULT" value="0" disabled >Seleccione...</option>
                             <option defaultValue="1">Cédula Nacional</option>
                             <option defaultValue="2">Pasaporte</option>
                             <option defaultValue="3">Cédula Jurídica</option>
