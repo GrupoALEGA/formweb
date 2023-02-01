@@ -197,7 +197,7 @@ const CompFormWeb = () => {
                 setlblinputName("Nombre")
                 //setonlyRnombA(false)
                 //setonlyRapell1A(false)
-               // setonlyRapell2A(false)
+                // setonlyRapell2A(false)
                 setinvisibleAp("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
@@ -452,8 +452,21 @@ const CompFormWeb = () => {
         }
     }
 
-    //Validacion del campo inputCed del afectado
-    const validarInputCedA = (val, ub) => {
+    const ValidarPassaporte = (val) => {
+        const valor = val
+        setdescH(valor)
+        console.log(valor)
+
+        if (val.toString().length >= 0) {
+            setdhClValid('is-valid')
+            setdehabilSubmit(false)
+        } else {
+            setdhClValid('is-invalid')
+        }
+    }
+
+
+    /*const validarDimex = (val) => {
         const valor = val
         setndiA(valor)
         if (ub == 1) {
@@ -473,6 +486,77 @@ const CompFormWeb = () => {
                 setapell1A('')
                 setapell2A('')
                 document.getElementById("errorCed").innerHTML = ""
+            }
+        } else if (ub == 2) {
+            cargarDatosC(val, ub)
+        }
+    }*/
+
+    //Validacion del campo inputCed del afectado
+    const validarInputCedA = (val, ub) => {
+        const valor = val
+        setndiA(valor)
+        if (ub == 1) {
+            if (selectNidA === 1) {
+                const resp = (/^[0-9]{9}$/.test(valor))
+                if ((resp) && (valor.toString().length >= 9)) {
+                    setidClValid("is-valid")
+                    cargarDatosP(val, ub)
+                    ValidarinputNomb()
+                    ValidarinputApp1()
+                    ValidarinputApp2()
+                } else {
+                    setidClValid("is-invalid")
+                    setnClValid("is-invalid")
+                    setpaClValid("is-invalid")
+                    setsaClValid("is-invalid")
+                    setnombA('')
+                    setapell1A('')
+                    setapell2A('')
+                    document.getElementById("errorCed").innerHTML = ""
+                }
+            }else if (selectNidA === 2){
+                const resp = (/^[a-zA-Z0-9]{9}$/.test(val))
+                if ((resp) && (valor.toString().length >= 9)) {
+                    setidClValid("is-valid")
+                } else {
+                    setidClValid("is-invalid")
+                    setnClValid("is-invalid")
+                    setpaClValid("is-invalid")
+                    setsaClValid("is-invalid")
+                    setnombA('')
+                    setapell1A('')
+                    setapell2A('')
+                    document.getElementById("errorCed").innerHTML = ""
+                }
+            }else if (selectNidA === 3){
+                const resp = (/^[a-zA-Z0-9]{10}$/.test(val))
+                if ((resp) && (valor.toString().length >= 10)) {
+                    setidClValid("is-valid")
+                } else {
+                    setidClValid("is-invalid")
+                    setnClValid("is-invalid")
+                    setpaClValid("is-invalid")
+                    setsaClValid("is-invalid")
+                    setnombA('')
+                    setapell1A('')
+                    setapell2A('')
+                    document.getElementById("errorCed").innerHTML = ""
+                }
+            }else if (selectNidA === 4){
+                const resp = (/^[0-9]{12}$/.test(valor))
+                if ((resp) && (valor.toString().length >= 12)) {
+                    setidClValid("is-valid")
+                } else {
+                    setidClValid("is-invalid")
+                    setnClValid("is-invalid")
+                    setpaClValid("is-invalid")
+                    setsaClValid("is-invalid")
+                    setnombA('')
+                    setapell1A('')
+                    setapell2A('')
+                    document.getElementById("errorCed").innerHTML = ""
+                }
             }
         } else if (ub == 2) {
             cargarDatosC(val, ub)
@@ -791,7 +875,7 @@ const CompFormWeb = () => {
                     <div className="col-md-2">
                         <label htmlFor="input_TIDC" className="form-label">Tipo de identificación</label>
                         <select name="vtidc" id="input_TIDC" defaultValue={selectNidC} className="form-select" disabled={dehabil} onChange={(e) => input_TIDCchange(e.target.selectedIndex)} required>
-                        <option defaultValue="DEFAULT" value="0" disabled >Seleccione...</option>
+                            <option defaultValue="DEFAULT" value="0" disabled >Seleccione...</option>
                             <option defaultValue="1">Cédula Nacional</option>
                             <option defaultValue="2">Pasaporte</option>
                             <option defaultValue="3">Cédula Jurídica</option>
