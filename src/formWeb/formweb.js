@@ -163,9 +163,9 @@ const CompFormWeb = () => {
             case 1:
 
                 setlblinputName("Nombre")
-                setonlyRnombA(true)
-                setonlyRapell1A(true)
-                setonlyRapell2A(true)
+                //setonlyRnombA(true)
+                //setonlyRapell1A(true)
+                //setonlyRapell2A(true)
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
                 setinvisibleAp("visible col-md-2")
@@ -173,9 +173,9 @@ const CompFormWeb = () => {
 
             case 2:
                 setlblinputName("Nombre")
-                setonlyRnombA(false)
-                setonlyRapell1A(false)
-                setonlyRapell2A(false)
+                //setonlyRnombA(false)
+                //setonlyRapell1A(false)
+                //setonlyRapell2A(false)
                 setinvisibleAp("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
@@ -183,9 +183,9 @@ const CompFormWeb = () => {
 
             case 3:
                 setlblinputName("Nombre de Fantasía")
-                setonlyRnombA(true)
-                setonlyRapell1A(true)
-                setonlyRapell2A(true)
+                //setonlyRnombA(true)
+                //setonlyRapell1A(true)
+                //setonlyRapell2A(true)
                 setinvisibleAp("invisible col-md-1")
                 setapell1A("Desconocido")
                 setapell2A("Desconocido")
@@ -195,9 +195,9 @@ const CompFormWeb = () => {
 
             case 4:
                 setlblinputName("Nombre")
-                setonlyRnombA(false)
-                setonlyRapell1A(false)
-                setonlyRapell2A(false)
+                //setonlyRnombA(false)
+                //setonlyRapell1A(false)
+               // setonlyRapell2A(false)
                 setinvisibleAp("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
@@ -223,9 +223,9 @@ const CompFormWeb = () => {
         switch (valor) {
             case 1:
                 setlblinputNameC("Nombre")
-                setonlyRnombC(true)
+                /*setonlyRnombC(true)
                 setonlyRapell1C(true)
-                setonlyRapell2C(true)
+                setonlyRapell2C(true)*/
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
                 setinvisibleApC("visible col-md-2")
@@ -233,9 +233,9 @@ const CompFormWeb = () => {
 
             case 2:
                 setlblinputNameC("Nombre")
-                setonlyRnombC(false)
+                /*setonlyRnombC(false)
                 setonlyRapell1C(false)
-                setonlyRapell2C(false)
+                setonlyRapell2C(false)*/
                 setinvisibleApC("visible col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
@@ -243,9 +243,9 @@ const CompFormWeb = () => {
 
             case 3:
                 setlblinputNameC("Nombre de Fantasía")
-                setonlyRnombC(true)
+                /*setonlyRnombC(true)
                 setonlyRapell1C(true)
-                setonlyRapell2C(true)
+                setonlyRapell2C(true)*/
                 setinvisibleApC("invisible col-md-1")
                 setapell1C("Desconocido")
                 setapell2C("Desconocido")
@@ -255,9 +255,9 @@ const CompFormWeb = () => {
 
             case 4:
                 setlblinputNameC("Nombre")
-                setonlyRnombC(false)
+                /*setonlyRnombC(false)
                 setonlyRapell1C(false)
-                setonlyRapell2C(false)
+                setonlyRapell2C(false)*/
                 setinvisibleApC("visible col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
@@ -487,7 +487,7 @@ const CompFormWeb = () => {
 
         if (ub == 2) {
             const resp = (/^[0-9]{6,30}$/.test(valor))
-            if ((resp) && (valor.toString().length >= 6)) {
+            if ((resp) && (valor.toString().length >= 9)) {
                 setidClValidC("is-valid")
                 cargaDatosComer(val, ub)
                 ValidarinputNombC()
@@ -658,7 +658,7 @@ const CompFormWeb = () => {
         const val = v
         const ub = 2
 
-        if ((val != undefined) && (val.toString().length >= 6)) {
+        if ((val != undefined) && (val.toString().length >= 10)) {
             if (selectNidC == 1) {
                 setndiA(val)
                 cargarDatosP(val, ub)
@@ -791,7 +791,7 @@ const CompFormWeb = () => {
                     <div className="col-md-2">
                         <label htmlFor="input_TIDC" className="form-label">Tipo de identificación</label>
                         <select name="vtidc" id="input_TIDC" className="form-select" disabled={dehabil} onChange={(e) => input_TIDCchange(e.target.selectedIndex)} required>
-                            <option defaultValue="">Seleccione...</option>
+                            <option defaultValue="" disabled>Seleccione...</option>
                             <option defaultValue="1">Cédula Nacional</option>
                             <option defaultValue="2">Pasaporte</option>
                             <option defaultValue="3">Cédula Jurídica</option>
