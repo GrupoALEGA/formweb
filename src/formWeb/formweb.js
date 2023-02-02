@@ -709,6 +709,7 @@ const CompFormWeb = () => {
 
     //Solicitud a DB
     const cargarDatosP = async (val, ub) => {
+        console.log(val, ub)
         await fetch(URI + 'pers/' + val)
             .then(resp => resp.json())
             .then((data) => {
