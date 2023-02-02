@@ -183,7 +183,7 @@ const CompFormWeb = () => {
                 break
 
             case 3:
-                setlblinputName("Nombre de Fantasía")
+                setlblinputName('Nombre de Fantasía (Opcional)')
                 setinvisibleAp1("invisible col-md-1")
                 setinvisibleAp2("invisible col-md-1")
                 setapell1A("Desconocido")
@@ -238,7 +238,7 @@ const CompFormWeb = () => {
                 break
 
             case 3:
-                setlblinputNameC("Nombre de Fantasía")
+                setlblinputNameC('Nombre de Fantasía (Opcional)')
                 setinvisibleAp1C("invisible col-md-1")
                 setinvisibleAp2C("invisible col-md-1")
                 setapell1C("Desconocido")
@@ -816,10 +816,12 @@ const CompFormWeb = () => {
                         setlblinputName('Nombre de Empresa o institucion')
                         setlblapell1A('Nombre de Fantasía (Opcional)')
                         setapell1A('')
-                    } else {
-                        const nombreA = Comer?.fantasy_name
-                        setnombA(nombreA)
-                        ValidarinputNomb(nombreA, ub)
+                    } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
+                        const nombreE = Comer?.business_name
+                        const nombreF = Comer?.fantasy_name
+                        setnombA(nombreE)
+                        setapell1A(nombreF)
+                        ValidarinputNomb(nombreF, ub)
                     }
                 } else if ((ub == 2) && (selectNidC == 3)) {
                     if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
