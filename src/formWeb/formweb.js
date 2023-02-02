@@ -95,8 +95,10 @@ const CompFormWeb = () => {
     const [ onlyRapell2C, setonlyRapell2C ] = useState(false)
 
     //useStaret para ocultar campos
-    const [ invisibleAp, setinvisibleAp ] = useState("visible col-md-2")
-    const [ invisibleApC, setinvisibleApC ] = useState("visible col-md-2")
+    const [ invisibleAp1, setinvisibleAp1 ] = useState("visible col-md-2")
+    const [ invisibleAp2, setinvisibleAp2 ] = useState("visible col-md-2")
+    const [ invisibleAp1C, setinvisibleAp1C ] = useState("visible col-md-2")
+    const [ invisibleAp2C, setinvisibleAp2C ] = useState("visible col-md-2")
     const [ classdivnomb, setclassdivnomb ] = useState("col-md-2")
     const [ classdivnombC, setclassdivnombC ] = useState("col-md-2")
     const [ classdivDNI, setclassdivDNI ] = useState("col-md-3")
@@ -106,6 +108,8 @@ const CompFormWeb = () => {
     const [ dehabilSubmit, setdehabilSubmit ] = useState(true)
     const [ lblinputName, setlblinputName ] = useState('Nombre')
     const [ lblinputNameC, setlblinputNameC ] = useState('Nombre')
+    const [ lblapell1A, setlblapell1A ] = useState('Primer Apellido')
+    const [ lblapell1C, setlblapell1C ] = useState('Primer Apellido')
     const [ idclValid, setidClValid ] = useState('')
     const [ nclValid, setnClValid ] = useState('')
     const [ nclValidC, setnClValidC ] = useState('')
@@ -162,30 +166,24 @@ const CompFormWeb = () => {
         switch (valor) {
             case 1:
                 setlblinputName("Nombre")
-                //setonlyRnombA(true)
-                //setonlyRapell1A(true)
-                //setonlyRapell2A(true)
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
-                setinvisibleAp("visible col-md-2")
+                setinvisibleAp1("visible col-md-2")
+                setinvisibleAp2("visible col-md-2")
                 break
 
             case 2:
                 setlblinputName("Nombre")
-                //setonlyRnombA(false)
-                //setonlyRapell1A(false)
-                //setonlyRapell2A(false)
-                setinvisibleAp("visible col-md-2")
+                setinvisibleAp1("visible col-md-2")
+                setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
                 break
 
             case 3:
                 setlblinputName("Nombre de Fantasía")
-                //setonlyRnombA(true)
-                //setonlyRapell1A(true)
-                //setonlyRapell2A(true)
-                setinvisibleAp("invisible col-md-1")
+                setinvisibleAp1("invisible col-md-1")
+                setinvisibleAp2("invisible col-md-1")
                 setapell1A("Desconocido")
                 setapell2A("Desconocido")
                 setclassdivnomb("col-md-5")
@@ -194,10 +192,8 @@ const CompFormWeb = () => {
 
             case 4:
                 setlblinputName("Nombre")
-                //setonlyRnombA(false)
-                //setonlyRapell1A(false)
-                // setonlyRapell2A(false)
-                setinvisibleAp("visible col-md-2")
+                setinvisibleAp1("visible col-md-2")
+                setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
                 break
@@ -222,30 +218,24 @@ const CompFormWeb = () => {
         switch (valor) {
             case 1:
                 setlblinputNameC("Nombre")
-                /*setonlyRnombC(true)
-                setonlyRapell1C(true)
-                setonlyRapell2C(true)*/
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
-                setinvisibleApC("visible col-md-2")
+                setinvisibleAp1C("visible col-md-2")
+                setinvisibleAp2C("visible col-md-2")
                 break
 
             case 2:
                 setlblinputNameC("Nombre")
-                /*setonlyRnombC(false)
-                setonlyRapell1C(false)
-                setonlyRapell2C(false)*/
-                setinvisibleApC("visible col-md-2")
+                setinvisibleAp1C("visible col-md-2")
+                setinvisibleAp2C("visible col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
                 break
 
             case 3:
                 setlblinputNameC("Nombre de Fantasía")
-                /*setonlyRnombC(true)
-                setonlyRapell1C(true)
-                setonlyRapell2C(true)*/
-                setinvisibleApC("invisible col-md-1")
+                setinvisibleAp1C("invisible col-md-1")
+                setinvisibleAp2C("invisible col-md-1")
                 setapell1C("Desconocido")
                 setapell2C("Desconocido")
                 setclassdivnombC("col-md-5")
@@ -254,10 +244,8 @@ const CompFormWeb = () => {
 
             case 4:
                 setlblinputNameC("Nombre")
-                /*setonlyRnombC(false)
-                setonlyRapell1C(false)
-                setonlyRapell2C(false)*/
-                setinvisibleApC("visible col-md-2")
+                setinvisibleAp1C("visible col-md-2")
+                setinvisibleAp2C("visible col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
                 break
@@ -362,7 +350,7 @@ const CompFormWeb = () => {
     }
 
     const validarText = (val) => {
-        return (/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(val))
+        return (/^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(val))
     }
 
     const validarTextEsp = (val) => {
@@ -383,7 +371,7 @@ const CompFormWeb = () => {
                 } else {
                     setnClValid('is-invalid')
                 }
-            }else if (Ced.toString().length == 10){                    
+            } else if (Ced.toString().length == 10) {
                 const resp = validarTextEsp(valor)
                 if (resp) {
                     setnClValid('is-valid')
@@ -399,15 +387,17 @@ const CompFormWeb = () => {
     const ValidarinputApp1 = (val) => {
         const valor = val
         setapell1A(valor)
-        if (val.toString().length >= 1) {
-            const resp = validarText(valor)
-            if (resp) {
-                setpaClValid('is-valid')
+        if (lblapell1A != 'Nombre de Fantasía (Opcional)') {
+            if (val.toString().length >= 1) {
+                const resp = validarText(valor)
+                if (resp) {
+                    setpaClValid('is-valid')
+                } else {
+                    setpaClValid('is-invalid')
+                }
             } else {
                 setpaClValid('is-invalid')
             }
-        } else {
-            setpaClValid('is-invalid')
         }
     }
 
@@ -440,7 +430,7 @@ const CompFormWeb = () => {
                 } else {
                     setnClValidC('is-invalid')
                 }
-            }else if (Ced.toString().length == 10){                    
+            } else if (Ced.toString().length == 10) {
                 const resp = validarTextEsp(valor)
                 if (resp) {
                     setnClValidC('is-valid')
@@ -453,34 +443,21 @@ const CompFormWeb = () => {
         }
     }
 
-    /*-const ValidarinputNombC = (val) => {
-        const valor = val
-        setnombC(valor)
-        if (val.toString().length >= 1) {
-            const resp = validarText(val)
-            if (resp) {
-                setnClValidC('is-valid')
-            } else {
-                setnClValidC('is-invalid')
-            }
-        } else {
-            setsaClValid('is-invalid')
-        }
-    }*/
-
     const ValidarinputApp1C = (val) => {
         const valor = val
         setapell1C(valor)
         console.log(valor)
-        if (val.toString().length >= 1) {
-            const resp = validarText(val)
-            if (resp) {
-                setpaClValidC('is-valid')
+        if (lblapell1C != 'Nombre de Fantasía (Opcional)') {
+            if (val.toString().length >= 1) {
+                const resp = validarText(val)
+                if (resp) {
+                    setpaClValidC('is-valid')
+                } else {
+                    setpaClValidC('is-invalid')
+                }
             } else {
                 setpaClValidC('is-invalid')
             }
-        } else {
-            setpaClValidC('is-invalid')
         }
     }
 
@@ -667,24 +644,70 @@ const CompFormWeb = () => {
         e.preventDefault()
         if (token != null) {
             console.log('si hay token')
-            if ((idclValid == 'is-valid') &&
-                (nclValid == 'is-valid') &&
-                (paclValid == 'is-valid') &&
-                (saclValid == 'is-valid') &&
-                (tlclValid == 'is-valid') &&
-                (emclValid == 'is-valid') &&
-
-
-                (idclValidC == 'is-valid') &&
-                (nclValidC == 'is-valid') &&
-                (paclValidC == 'is-valid') &&
-                (saclValidC == 'is-valid')
-
-            ) {
-                console.log('Todo es valido')
-                EnviarDatos()
+            if (lblapell1A == 'Nombre de Fantasía (Opcional)') {
+                if ((idclValid == 'is-valid') &&
+                    (nclValid == 'is-valid') &&
+                    (saclValid == 'is-valid') &&
+                    (tlclValid == 'is-valid') &&
+                    (emclValid == 'is-valid') &&
+                    (idclValidC == 'is-valid') &&
+                    (nclValidC == 'is-valid') &&
+                    (paclValidC == 'is-valid') &&
+                    (saclValidC == 'is-valid')
+                ) {
+                    console.log('Todo es valido')
+                    EnviarDatos()
+                } else {
+                    console.log('faltan datos')
+                }
+            } else if (lblapell1C == 'Nombre de Fantasía (Opcional)') {
+                if ((idclValid == 'is-valid') &&
+                    (nclValid == 'is-valid') &&
+                    (paclValid == 'is-valid') &&
+                    (saclValid == 'is-valid') &&
+                    (tlclValid == 'is-valid') &&
+                    (emclValid == 'is-valid') &&
+                    (idclValidC == 'is-valid') &&
+                    (nclValidC == 'is-valid') &&
+                    (saclValidC == 'is-valid')
+                ) {
+                    console.log('Todo es valido')
+                    EnviarDatos()
+                } else {
+                    console.log('faltan datos')
+                }
+            } else if ((lblapell1A == 'Nombre de Fantasía (Opcional)') && (lblapell1C == 'Nombre de Fantasía (Opcional)')) {
+                if ((idclValid == 'is-valid') &&
+                    (nclValid == 'is-valid') &&
+                    (saclValid == 'is-valid') &&
+                    (tlclValid == 'is-valid') &&
+                    (emclValid == 'is-valid') &&
+                    (idclValidC == 'is-valid') &&
+                    (nclValidC == 'is-valid') &&
+                    (saclValidC == 'is-valid')
+                ) {
+                    console.log('Todo es valido')
+                    EnviarDatos()
+                } else {
+                    console.log('faltan datos')
+                }
             } else {
-                console.log('faltan datos')
+                if ((idclValid == 'is-valid') &&
+                    (nclValid == 'is-valid') &&
+                    (paclValid == 'is-valid') &&
+                    (saclValid == 'is-valid') &&
+                    (tlclValid == 'is-valid') &&
+                    (emclValid == 'is-valid') &&
+                    (idclValidC == 'is-valid') &&
+                    (nclValidC == 'is-valid') &&
+                    (paclValidC == 'is-valid') &&
+                    (saclValidC == 'is-valid')
+                ) {
+                    console.log('Todo es valido')
+                    EnviarDatos()
+                } else {
+                    console.log('faltan datos')
+                }
             }
         } else { alert('Por favor, confirme que es humano...') }
     }
@@ -740,7 +763,7 @@ const CompFormWeb = () => {
     //Solicitud a DB
     const cargarDatosP = async (val, ub) => {
         const Ub = ub
-        console.log(val, Ub)        
+        console.log(val, Ub)
         await fetch(URI + 'pers/' + val)
             .then(resp => resp.json())
             .then((data) => {
@@ -781,12 +804,12 @@ const CompFormWeb = () => {
                 if ((ub == 1) && (selectNidA == 3)) {
                     if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
                         const nombreA = Comer?.business_name
-                        ValidarinputNomb(nombreA, val)
                         setnombA(nombreA)
-                        console.log(nombreA, ub)
-                        
+                        ValidarinputNomb(nombreA, val)
+                        setinvisibleAp1("visible col-md-2")
                         setlblinputName('Nombre de Empresa o institucion')
-                        
+                        setlblapell1A('Nombre de Fantasía (Opcional)')
+                        setapell1A('')
                     } else {
                         const nombreA = Comer?.fantasy_name
                         setnombA(nombreA)
@@ -798,6 +821,11 @@ const CompFormWeb = () => {
                         setnombC(nombreC)
                         ValidarinputNombC(nombreC, val)
                         setlblinputNameC('Nombre de Empresa o institucion')
+
+                        setinvisibleAp1C("visible col-md-2")
+                        setlblinputNameC('Nombre de Empresa o institucion')
+                        setlblapell1C('Nombre de Fantasía (Opcional)')
+                        setapell1C('')
                     } else {
                         const nombreC = Comer?.fantasy_name
                         setnombC(nombreC)
@@ -878,14 +906,14 @@ const CompFormWeb = () => {
                             Por favor, ingrese su nombre.
                         </div>
                     </div>
-                    <div id="divinput1erAp" className={invisibleAp}>
-                        <label htmlFor="input1erAp" className="form-label">Primer Apellido</label>
-                        <input name="apell1" type="text" className={`form-control ${invisibleAp} ${paclValid}`} readOnly={onlyRapell1A} id="input1erAp" value={apell1A} onChange={(e) => ValidarinputApp1(e.target.value)} disabled={dehabil} required />
+                    <div id="divinput1erAp" className={invisibleAp1}>
+                        <label htmlFor="input1erAp" className="form-label">{lblapell1A}</label>
+                        <input name="apell1" type="text" className={`form-control ${paclValid}`} readOnly={onlyRapell1A} id="input1erAp" value={apell1A} onChange={(e) => ValidarinputApp1(e.target.value)} disabled={dehabil} required />
                         <div className="invalid-feedback">
                             Por favor, ingrese su primer apellido.
                         </div>
                     </div>
-                    <div id="divinput2doAp" className={invisibleAp}>
+                    <div id="divinput2doAp" className={invisibleAp2}>
                         <label htmlFor="input2doAp" className="form-label" >Segundo Apellido</label>
                         <input name="apell2" type="text" className={`form-control ${saclValid}`} readOnly={onlyRapell2A} id="input2doAp" value={apell2A} onChange={(e) => ValidarinputApp2(e.target.value)} disabled={dehabil} required />
                         <div className="invalid-feedback">
@@ -991,16 +1019,16 @@ const CompFormWeb = () => {
                             Por favor, ingrese el nombre del comerciante.
                         </div>
                     </div>
-                    <div id="divinput1erApC" className={invisibleApC}>
-                        <label htmlFor="input1erApC" className="form-label">Primer Apellido</label>
-                        <input name="apell1c" type="text" className={`form-control ${invisibleApC} ${paclValidC}`} readOnly={onlyRapell1C} id="input1erApC" value={apell1C} onChange={(e) => ValidarinputApp1C(e.target.value)} disabled={dehabilapell1C} required />
+                    <div id="divinput1erApC" className={invisibleAp1C}>
+                        <label htmlFor="input1erApC" className="form-label">{lblapell1C}</label>
+                        <input name="apell1c" type="text" className={`form-control ${paclValidC}`} readOnly={onlyRapell1C} id="input1erApC" value={apell1C} onChange={(e) => ValidarinputApp1C(e.target.value)} disabled={dehabilapell1C} required />
                         <div className="invalid-feedback">
                             Por favor, ingrese el primer apellido del comerciante.
                         </div>
                     </div>
-                    <div id="divinput2doApC" className={invisibleApC}>
+                    <div id="divinput2doApC" className={invisibleAp2C}>
                         <label htmlFor="input2doApC" className="form-label">Segundo Apellido</label>
-                        <input name="apell2c" type="text" className={`form-control ${invisibleApC} ${saclValidC}`} readOnly={onlyRapell2C} id="input2doApC" value={apell2C} onChange={(e) => ValidarinputApp2C(e.target.value)} disabled={dehabilapell2C} required />
+                        <input name="apell2c" type="text" className={`form-control ${saclValidC}`} readOnly={onlyRapell2C} id="input2doApC" value={apell2C} onChange={(e) => ValidarinputApp2C(e.target.value)} disabled={dehabilapell2C} required />
                         <div className="invalid-feedback">
                             Por favor, ingrese el segundo apellido del comerciante.
                         </div>
