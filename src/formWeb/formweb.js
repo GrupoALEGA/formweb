@@ -166,6 +166,7 @@ const CompFormWeb = () => {
         switch (valor) {
             case 1:
                 setlblinputName("Nombre")
+                setlblapell1A("Primer Apellido")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
                 setinvisibleAp1("visible col-md-2")
@@ -174,6 +175,7 @@ const CompFormWeb = () => {
 
             case 2:
                 setlblinputName("Nombre")
+                setlblapell1A("Primer Apellido")
                 setinvisibleAp1("visible col-md-2")
                 setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
@@ -192,6 +194,7 @@ const CompFormWeb = () => {
 
             case 4:
                 setlblinputName("Nombre")
+                setlblapell1A("Primer Apellido")
                 setinvisibleAp1("visible col-md-2")
                 setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
@@ -218,6 +221,7 @@ const CompFormWeb = () => {
         switch (valor) {
             case 1:
                 setlblinputNameC("Nombre")
+                setlblapell1C("Primer Apellido")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
                 setinvisibleAp1C("visible col-md-2")
@@ -226,6 +230,7 @@ const CompFormWeb = () => {
 
             case 2:
                 setlblinputNameC("Nombre")
+                setlblapell1C("Primer Apellido")
                 setinvisibleAp1C("visible col-md-2")
                 setinvisibleAp2C("visible col-md-2")
                 setclassdivnombC("col-md-2")
@@ -244,6 +249,7 @@ const CompFormWeb = () => {
 
             case 4:
                 setlblinputNameC("Nombre")
+                setlblapell1C("Primer Apellido")
                 setinvisibleAp1C("visible col-md-2")
                 setinvisibleAp2C("visible col-md-2")
                 setclassdivnombC("col-md-2")
