@@ -362,7 +362,7 @@ const CompFormWeb = () => {
     }
 
     const validarText = (val) => {
-        return (/^(?=(?:.*\d){1})(?=(?:.*[A-Z]){1})(?=(?:.*[a-z]){1})(?=(?:.*[@$?¡\-_]){1})\S{8,16}$/.test(val))
+        return (/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/.test(val))
     }
 
     const validarTextEsp = (val) => {
@@ -370,16 +370,26 @@ const CompFormWeb = () => {
     }
 
     //Validacion campo nombre
-    const ValidarinputNomb = (val) => {
+    const ValidarinputNomb = (val, ced) => {
         const valor = val
+        const Ced = ced
         setnombA(valor)
 
-        if (val.toString().length >= 1) {           
-            const resp = validarText(valor)
-            if (resp) {
-                setnClValid('is-valid')
-            } else {
-                setnClValid('is-invalid')
+        if (valor.toString().length >= 1) {
+            if (Ced.toString().length == 9) {
+                const resp = validarText(valor)
+                if (resp) {
+                    setnClValid('is-valid')
+                } else {
+                    setnClValid('is-invalid')
+                }
+            }else if (Ced.toString().length == 10){                    
+                const resp = validarTextEsp(valor)
+                if (resp) {
+                    setnClValid('is-valid')
+                } else {
+                    setnClValid('is-invalid')
+                }
             }
         } else {
             setnClValid('is-invalid')
@@ -405,7 +415,8 @@ const CompFormWeb = () => {
         const valor = val
         setapell2A(valor)
         if (val.toString().length >= 1) {
-            const resp = validarText(valor)
+            const resp = validarText(valor.trimEnd())
+            console.log(valor, resp)
             if (resp) {
                 setsaClValid('is-valid')
             } else {
@@ -416,7 +427,33 @@ const CompFormWeb = () => {
         }
     }
 
-    const ValidarinputNombC = (val) => {
+    const ValidarinputNombC = (val, ced) => {
+        const valor = val
+        const Ced = ced
+        setnombC(valor)
+        console.log(val, ced)
+        if (valor.toString().length >= 1) {
+            if (Ced.toString().length == 9) {
+                const resp = validarText(valor)
+                if (resp) {
+                    setnClValidC('is-valid')
+                } else {
+                    setnClValidC('is-invalid')
+                }
+            }else if (Ced.toString().length == 10){                    
+                const resp = validarTextEsp(valor)
+                if (resp) {
+                    setnClValidC('is-valid')
+                } else {
+                    setnClValidC('is-invalid')
+                }
+            }
+        } else {
+            setnClValidC('is-invalid')
+        }
+    }
+
+    /*-const ValidarinputNombC = (val) => {
         const valor = val
         setnombC(valor)
         if (val.toString().length >= 1) {
@@ -429,7 +466,7 @@ const CompFormWeb = () => {
         } else {
             setsaClValid('is-invalid')
         }
-    }
+    }*/
 
     const ValidarinputApp1C = (val) => {
         const valor = val
@@ -451,7 +488,7 @@ const CompFormWeb = () => {
         const valor = val
         setapell2C(valor)
         if (val.toString().length >= 1) {
-            const resp = validarText(valor)
+            const resp = validarText(valor.trimEnd())
             if (resp) {
                 setsaClValidC('is-valid')
             } else {
@@ -479,16 +516,12 @@ const CompFormWeb = () => {
     const validarInputCedA = (val, ub) => {
         const valor = val
         setndiA(valor)
-        console.log(val, selectNidA, ub)
         if (ub == 1) {
             if (selectNidA === 1) {
                 const resp = (/^[0-9]{9}$/.test(valor))
                 if ((resp) && (valor.toString().length >= 9)) {
                     setidClValid("is-valid")
                     cargarDatosP(val, ub)
-                    ValidarinputNomb()
-                    ValidarinputApp1()
-                    ValidarinputApp2()
                 } else {
                     setidClValid("is-invalid")
                     setnClValid("is-invalid")
@@ -564,9 +597,6 @@ const CompFormWeb = () => {
                 if ((resp) && (valor.toString().length >= 9)) {
                     setidClValidC("is-valid")
                     cargarDatosP(val, ub)
-                    ValidarinputNombC()
-                    ValidarinputApp1C()
-                    ValidarinputApp2C()
                     document.getElementById("errorCed").innerHTML = "Numero de identificacion valido"
                 } else {
                     setidClValidC("is-invalid")
@@ -709,29 +739,38 @@ const CompFormWeb = () => {
 
     //Solicitud a DB
     const cargarDatosP = async (val, ub) => {
-        console.log(val, ub)
+        const Ub = ub
+        console.log(val, Ub)        
         await fetch(URI + 'pers/' + val)
             .then(resp => resp.json())
             .then((data) => {
                 const Perso = data[ 0 ]
                 setPers(Perso)
-
+                console.log(Perso)
                 if ((ub == 1) && (selectNidA == 1)) {
-                    setnombA(Perso?.nombre)
+                    const nombre = Perso?.nombre
+                    setnombA(nombre)
                     setapell1A(Perso?.first_last_name)
                     setapell2A(Perso?.second_last_name)
+                    console.log(nombre)
+                    ValidarinputNomb(nombre, val)
+                    ValidarinputApp1(Perso?.first_last_name)
+                    ValidarinputApp2(Perso?.second_last_name)
                 } else if ((ub == 2) && (selectNidC == 1)) {
-                    setnombC(Perso?.nombre)
+                    const nombre = Perso?.nombre
+                    setnombC(nombre)
                     setapell1C(Perso?.first_last_name)
                     setapell2C(Perso?.second_last_name)
+                    ValidarinputNombC(nombre, val)
+                    ValidarinputApp1C(Perso?.first_last_name)
+                    ValidarinputApp2C(Perso?.second_last_name)
                 } else if ((ub == 1) && (selectNidA == 3)) {
-                    cargarDatosC(val, ub)
+                    cargarDatosC(val, Ub)
                 }
             })
     }
 
     const cargarDatosC = async (val, ub) => {
-        console.log('En CargarDatosC', val, ub, selectNidA)
         await fetch(URI + 'comer/' + val)
             .then(resp => resp.json())
             .then((data) => {
@@ -740,27 +779,29 @@ const CompFormWeb = () => {
                 console.log(Comer)
 
                 if ((ub == 1) && (selectNidA == 3)) {
-                    if ((Comer?.fantasy_name == 'NULL') ||(Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
+                    if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
                         const nombreA = Comer?.business_name
+                        ValidarinputNomb(nombreA, val)
                         setnombA(nombreA)
-                        ValidarinputNomb(nombreA, ub)
+                        console.log(nombreA, ub)
+                        
                         setlblinputName('Nombre de Empresa o institucion')
-                        console.log(nombA, ub)
+                        
                     } else {
                         const nombreA = Comer?.fantasy_name
                         setnombA(nombreA)
                         ValidarinputNomb(nombreA, ub)
                     }
                 } else if ((ub == 2) && (selectNidC == 3)) {
-                    if ((Comer?.fantasy_name == 'NULL')||(Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
+                    if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
                         const nombreC = Comer?.business_name
                         setnombC(nombreC)
-                        ValidarinputNombC(nombreC, ub)
+                        ValidarinputNombC(nombreC, val)
                         setlblinputNameC('Nombre de Empresa o institucion')
                     } else {
                         const nombreC = Comer?.fantasy_name
                         setnombC(nombreC)
-                        ValidarinputNombC(nombreC, ub)
+                        ValidarinputNombC(nombreC, val)
                         console.log(nombreC, ub)
                     }
                 } else if ((ub == 2) && (selectNidC == 1)) {
