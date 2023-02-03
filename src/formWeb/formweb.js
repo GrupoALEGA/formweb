@@ -385,12 +385,11 @@ const CompFormWeb = () => {
 
     //Validacion campo nombre
     const ValidarinputNomb = (val, ced) => {
-
+        const valor = val
+        setnombA(valor)
         if (lblinputName == "Nombre") {
-            const valor = val
-            const Ced = (ced == 1)? ndiA : ced
+            const Ced = (ced == 1) ? ndiA : ced
             setnombA(valor)
-            console.log(val, ced)
             if (valor.toString().length >= 1) {
                 if (Ced.toString().length == 9) {
                     const resp = validarText(valor)
@@ -400,6 +399,27 @@ const CompFormWeb = () => {
                         setnClValid('is-invalid')
                     }
                 } else if (Ced.toString().length == 10) {
+                    const resp = validarTextEsp(valor)
+                    if (resp) {
+                        setnClValid('is-valid')
+                    } else {
+                        setnClValid('is-invalid')
+                    }
+                } else if ((Ced.toString().length == 12) || (selectNidA == 4)) {
+                    const resp = validarText(valor)
+                    if (resp) {
+                        setnClValid('is-valid')
+                    } else {
+                        setnClValid('is-invalid')
+                    }
+                }
+            } else {
+                setnClValid('is-invalid')
+            }
+        } else if ((lblinputName == "Nombre de Empresa o institucion") || (lblinputName == "Nombre de Fantasía (Opcional)")) {
+            const Ced = (ced == 1) ? ndiA : ced
+            if (valor.toString().length >= 1) {
+                if (Ced?.toString().length == 10) {
                     const resp = validarTextEsp(valor)
                     if (resp) {
                         setnClValid('is-valid')
@@ -450,28 +470,55 @@ const CompFormWeb = () => {
     }
 
     const ValidarinputNombC = (val, ced) => {
-        const valor = val
-        const Ced = (ced == 2)? ndiA : ced
-        setnombC(valor)
-        console.log(val, ced)
-        if (valor.toString().length >= 1) {
-            if (Ced.toString().length == 9) {
-                const resp = validarText(valor)
-                if (resp) {
-                    setnClValidC('is-valid')
-                } else {
-                    setnClValidC('is-invalid')
+        if (lblinputNameC == "Nombre") {
+            const valor = val
+            const Ced = (ced == 2) ? ndiA : ced
+            setnombC(valor)
+            console.log(val, ced)
+            if (valor.toString().length >= 1) {
+                if (Ced.toString().length == 9) {
+                    const resp = validarText(valor)
+                    if (resp) {
+                        setnClValidC('is-valid')
+                    } else {
+                        setnClValidC('is-invalid')
+                    }
+                } else if (Ced.toString().length == 10) {
+                    const resp = validarTextEsp(valor)
+                    if (resp) {
+                        setnClValidC('is-valid')
+                    } else {
+                        setnClValidC('is-invalid')
+                    }
+                } else if ((Ced.toString().length == 12) || (selectNidC == 4)) {
+                    const resp = validarTextEsp(valor)
+                    if (resp) {
+                        setnClValidC('is-valid')
+                    } else {
+                        setnClValidC('is-invalid')
+                    }
                 }
-            } else if (Ced.toString().length == 10) {
-                const resp = validarTextEsp(valor)
-                if (resp) {
-                    setnClValidC('is-valid')
-                } else {
-                    setnClValidC('is-invalid')
-                }
+            } else {
+                setnClValidC('is-invalid')
             }
-        } else {
-            setnClValidC('is-invalid')
+        } else if ((lblinputNameC == "Nombre de Empresa o institucion") || (lblinputNameC == "Nombre de Fantasía (Opcional)")) {
+            const valor = val
+            const Ced = (ced == 2) ? ndiC : ced
+            setnombC(valor)
+            console.log(val, ced)
+            if (valor.toString().length >= 1) {
+                if (Ced.toString().length == 10) {
+                    const resp = validarTextEsp(valor)
+                    console.log(resp, 'en CJ 10')
+                    if (resp) {
+                        setnClValidC('is-valid')
+                    } else {
+                        setnClValidC('is-invalid')
+                    }
+                }
+            } else {
+                setnClValidC('is-invalid')
+            }
         }
     }
 
@@ -527,8 +574,9 @@ const CompFormWeb = () => {
         setndiA(valor)
         if (ub == 1) {
             if (selectNidA === 1) {
+                console.log(val)
                 const resp = (/^[0-9]{9}$/.test(valor))
-                if ((resp) && (valor.toString().length >= 9)) {
+                if ((resp) && (valor.toString().length === 9)) {
                     setidClValid("is-valid")
                     cargarDatosP(val, ub)
                 } else {
@@ -545,13 +593,9 @@ const CompFormWeb = () => {
                 }
             } else if (selectNidA === 2) {
                 const resp = (/^[a-zA-Z0-9]{9}$/.test(val))
-                if ((resp) && (valor.toString().length >= 9)) {
+                if ((resp) && (valor.toString().length === 9)) {
                     setidClValid("is-valid")
                 } else {
-                    /*setidClValid("is-invalid")
-                    setnClValid("is-invalid")
-                    setpaClValid("is-invalid")
-                    setsaClValid("is-invalid")*/
                     setnombA('')
                     setapell1A('')
                     setapell2A('')
@@ -560,16 +604,11 @@ const CompFormWeb = () => {
             } else if (selectNidA === 3) {
                 console.log("valor =", val, ub)
                 const resp = (/^[a-zA-Z0-9]{10}$/.test(val))
-                if ((resp) && (valor.toString().length >= 10)) {
+                if ((resp) && (valor.toString().length === 10)) {
                     setidClValid("is-valid")
-                    cargarDatosC(val, ub)
-                    //ValidarinputNomb()
-                    //ValidarinputApp1()
-                    //ValidarinputApp2()
                 } else {
                     setidClValid("is-invalid")
                     setnClValid("is-invalid")
-                    //setpaClValid("is-invalid")
                     setsaClValid("is-invalid")
                     setnombA('')
                     setapell1A('')
@@ -578,13 +617,10 @@ const CompFormWeb = () => {
                 }
             } else if (selectNidA === 4) {
                 const resp = (/^[0-9]{12}$/.test(valor))
-                if ((resp) && (valor.toString().length >= 12)) {
+                if ((resp) && (valor.toString().length === 12)) {
                     setidClValid("is-valid")
                 } else {
                     setidClValid("is-invalid")
-                    /*setnClValid("is-invalid")
-                    setpaClValid("is-invalid")
-                    setsaClValid("is-invalid")*/
                     setnombA('')
                     setapell1A('')
                     setapell2A('')
@@ -598,64 +634,64 @@ const CompFormWeb = () => {
 
     //Validacion del campo inputCed del comerciante
     const validarInputCedC = (val, ub) => {
-        console.log('Estamos en validarInputCedC')
         const valor = val
         setndiC(valor)
-
         if (ub == 2) {
             if (selectNidC === 1) {
-                const resp = (/^[0-9]{6,30}$/.test(valor))
-                if ((resp) && (valor.toString().length >= 9)) {
+                const resp = (/^[0-9]{9}$/.test(valor))
+                if ((resp) && (valor.toString().length === 9)) {
                     setidClValidC("is-valid")
                     cargarDatosP(val, ub)
-                    document.getElementById("errorCed").innerHTML = "Numero de identificacion valido"
+                } else {
+                    setidClValidC("is-invalid")
+                    if ((setselectNidA == 1) || (setselectNidA == 3)) {
+                        setnClValidC("is-invalid")
+                        setpaClValidC("is-invalid")
+                        setsaClValidC("is-invalid")
+                    }
+                    setnombC('')
+                    setapell1C('')
+                    setapell2C('')
+                    document.getElementById("errorCedC").innerHTML = ""
+                }
+            } else if (selectNidC === 2) {
+                const resp = (/^[a-zA-Z0-9]{9}$/.test(val))
+                console.log(resp, val)
+                if ((resp) && (valor.toString().length === 9)) {
+                    setidClValidC("is-valid")
+                } else {
+                    /*setidClValidC("is-invalid")
+                    setnClValidC("is-invalid")
+                    setpaClValidC("is-invalid")
+                    setsaClValidC("is-invalid")*/
+                    setnombC('')
+                    setapell1C('')
+                    setapell2C('')
+                    document.getElementById("errorCedC").innerHTML = ""
+                }
+
+            } else if (selectNidC === 3) {
+                const resp = (/^[a-zA-Z0-9]{10}$/.test(val))
+                if ((resp) && (valor.toString().length === 10)) {
+                    setidClValidC("is-valid")
+                    console.log("valor =", val, ub)
+                    cargarDatosC(val, ub)
+                    /*ValidarinputNombC()
+                    ValidarinputApp1C()
+                    ValidarinputApp2C()*/
                 } else {
                     setidClValidC("is-invalid")
                     setnClValidC("is-invalid")
-                    setpaClValidC("is-invalid")
+                    //setpaClValidC("is-invalid")
                     setsaClValidC("is-invalid")
                     setnombC('')
                     setapell1C('')
                     setapell2C('')
-                    document.getElementById("errorCed").innerHTML = ""
-                }
-            } if (selectNidC === 2) {
-                const resp = (/^[a-zA-Z0-9]{9}$/.test(val))
-                if ((resp) && (valor.toString().length >= 9)) {
-                    setidClValidC("is-valid")
-                } else {
-                    setidClValidC("is-invalid")
-                    /*setnClValidC("is-invalid")
-                    setpaClValidC("is-invalid")
-                    setsaClValidC("is-invalid")*/
-                    setnombC('')
-                    setapell1C('')
-                    setapell2C('')
                     document.getElementById("errorCedC").innerHTML = ""
                 }
-
-            } if (selectNidC === 3) {
-                const resp = (/^[a-zA-Z0-9]{10}$/.test(val))
-                if ((resp) && (valor.toString().length >= 10)) {
-                    setidClValidC("is-valid")
-                    console.log("valor =", val, ub)
-                    cargarDatosC(val, ub)
-                    ValidarinputNombC()
-                    ValidarinputApp1C()
-                    ValidarinputApp2C()
-                } else {
-                    setidClValidC("is-invalid")
-                    /*setnClValidC("is-invalid")
-                    setpaClValidC("is-invalid")
-                    setsaClValidC("is-invalid")*/
-                    setnombC('')
-                    setapell1C('')
-                    setapell2C('')
-                    document.getElementById("errorCedC").innerHTML = ""
-                }
-            } if (selectNidC === 4) {
+            } else if (selectNidC === 4) {
                 const resp = (/^[0-9]{12}$/.test(valor))
-                if ((resp) && (valor.toString().length >= 12)) {
+                if ((resp) && (valor.toString().length === 12)) {
                     setidClValidC("is-valid")
                 } else {
                     setidClValidC("is-invalid")
@@ -803,7 +839,7 @@ const CompFormWeb = () => {
                     setapell1A(Perso?.first_last_name)
                     setapell2A(Perso?.second_last_name)
                     console.log(nombre)
-                    ValidarinputNomb(nombre, val)
+                    ValidarinputNomb(nombre, 1)
                     ValidarinputApp1(Perso?.first_last_name)
                     ValidarinputApp2(Perso?.second_last_name.trimEnd())
                 } else if ((ub == 2) && (selectNidC == 1)) {
@@ -826,50 +862,55 @@ const CompFormWeb = () => {
             .then((data) => {
                 const Comer = data[ 0 ]
                 setComer(Comer)
-
+                console.log(ub)
                 if ((ub == 1) && (selectNidA == 3)) {
                     if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
                         const nombreA = Comer?.business_name
                         setnombA(nombreA)
-                        //ValidarinputNomb(nombreA, val)
+                        ValidarinputNomb(nombreA, val)
                         setinvisibleAp1("visible col-md-2")
                         setlblinputName('Nombre de Empresa o institucion')
                         setlblapell1A('Nombre de Fantasía (Opcional)')
                         setapell1A('')
-                        console.log(nombreA, val, "primer if")
+                        console.log('si no hay nombre de fantasia')
                     } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
                         const nombreE = Comer?.business_name
                         const nombreF = Comer?.fantasy_name
                         setinvisibleAp1("visible col-md-2")
                         setlblinputName('Nombre de Empresa o institucion')
                         setlblapell1A('Nombre de Fantasía (Opcional)')
-                        console.log(invisibleAp1)
                         setnombA(nombreE)
-                        console.log(nombreE)
                         setapell1A(nombreF)
-                        console.log(nombreF)
-                        console.log(nombreE, val, "segundo if")
                         //ValidarinputNomb(nombreF, ub)
+                    } else if (((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) && (Comer?.business_name == null)) {
+                        const nombreE = Comer?.business_name
+                        const nombreF = Comer?.fantasy_name
+                        setinvisibleAp1("visible col-md-2")
+                        setlblinputName('Nombre de Empresa o institucion')
+                        setlblapell1A('Nombre de Fantasía (Opcional)')
+                        setnombA(nombreE)
+                        setapell1A(nombreF)
+                        //ValidarinputNomb(nombreF, ub)
+                    } else if ((ub == 2) && (selectNidC == 3)) {
+                        console.log('segundo if de comer')
+                        if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
+                            const nombreC = Comer?.business_name
+                            setnombC(nombreC)
+                            //ValidarinputNombC(nombreC, val)
+                            setlblinputNameC('Nombre de Empresa o institucion')
+                            setinvisibleAp1C("visible col-md-2")
+                            setlblinputNameC('Nombre de Empresa o institucion')
+                            setlblapell1C('Nombre de Fantasía (Opcional)')
+                            setapell1C('')
+                            console.log('si no hay nombre de fantasia')
+                        } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
+                            const nombreE = 'Desconocido'
+                            setlblapell1C('Nombre de Fantasía (Opcional)')
+                            setapell1C(nombreE)
+                        }
+                    } else if ((ub == 2) && (selectNidC == 1)) {
+                        cargarDatosP(val, ub)
                     }
-                } else if ((ub == 2) && (selectNidC == 3)) {
-                    if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
-                        const nombreC = Comer?.business_name
-                        setnombC(nombreC)
-                        //ValidarinputNombC(nombreC, val)
-                        setlblinputNameC('Nombre de Empresa o institucion')
-
-                        setinvisibleAp1C("visible col-md-2")
-                        setlblinputNameC('Nombre de Empresa o institucion')
-                        setlblapell1C('Nombre de Fantasía (Opcional)')
-                        setapell1C('')
-                    } else {
-                        const nombreC = Comer?.fantasy_name
-                        setnombC(nombreC)
-                        //ValidarinputNombC(nombreC, val)
-                        console.log(nombreC, ub)
-                    }
-                } else if ((ub == 2) && (selectNidC == 1)) {
-                    cargarDatosP(val, ub)
                 }
             })
     }
