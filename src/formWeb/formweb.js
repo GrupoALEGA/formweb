@@ -602,10 +602,14 @@ const CompFormWeb = () => {
                     document.getElementById("errorCed").innerHTML = ""
                 }
             } else if (selectNidA === 3) {
+                console.log('valor 3')
                 console.log("valor =", val, ub)
                 const resp = (/^[a-zA-Z0-9]{10}$/.test(val))
+                console.log(resp)
                 if ((resp) && (valor.toString().length === 10)) {
                     setidClValid("is-valid")
+                    console.log('vamos a cargar datos')
+                    cargarDatosC(valor, 1)
                 } else {
                     setidClValid("is-invalid")
                     setnClValid("is-invalid")
@@ -714,19 +718,17 @@ const CompFormWeb = () => {
         e.preventDefault()
         if (token != null) {
             console.log('si hay token')
+            const p1 = 0
             if (lblapell1A == 'Nombre de Fantasía (Opcional)') {
                 if ((idclValid == 'is-valid') &&
                     (nclValid == 'is-valid') &&
-                    (saclValid == 'is-valid') &&
                     (tlclValid == 'is-valid') &&
                     (emclValid == 'is-valid') &&
-                    (idclValidC == 'is-valid')
-                ) {
-                    console.log('Todo es valido')
-                    EnviarDatos()
-                } else {
-                    console.log('faltan datos')
-                }
+                    (fhHValidC == 'is-valid') &&
+                    (dhClValid == 'is-valid') &&
+                    (idclValidC == 'is-valid') &&
+                    (nclValidC == 'is-valid')
+                ) { p1 = 1 }
             } else if (lblapell1C == 'Nombre de Fantasía (Opcional)') {
                 if ((idclValid == 'is-valid') &&
                     (nclValid == 'is-valid') &&
@@ -857,6 +859,7 @@ const CompFormWeb = () => {
     }
 
     const cargarDatosC = async (val, ub) => {
+        console.log('En cargardatosC')
         await fetch(URI + 'comer/' + val)
             .then(resp => resp.json())
             .then((data) => {
@@ -891,26 +894,40 @@ const CompFormWeb = () => {
                         setnombA(nombreE)
                         setapell1A(nombreF)
                         //ValidarinputNomb(nombreF, ub)
-                    } else if ((ub == 2) && (selectNidC == 3)) {
-                        console.log('segundo if de comer')
-                        if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
-                            const nombreC = Comer?.business_name
-                            setnombC(nombreC)
-                            //ValidarinputNombC(nombreC, val)
-                            setlblinputNameC('Nombre de Empresa o institucion')
-                            setinvisibleAp1C("visible col-md-2")
-                            setlblinputNameC('Nombre de Empresa o institucion')
-                            setlblapell1C('Nombre de Fantasía (Opcional)')
-                            setapell1C('')
-                            console.log('si no hay nombre de fantasia')
-                        } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
-                            const nombreE = 'Desconocido'
-                            setlblapell1C('Nombre de Fantasía (Opcional)')
-                            setapell1C(nombreE)
-                        }
-                    } else if ((ub == 2) && (selectNidC == 1)) {
-                        cargarDatosP(val, ub)
                     }
+                } else if ((ub == 2) && (selectNidC == 3)) {
+                    console.log('segundo if de comer')
+                    if ((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) {
+                        const nombreC = Comer?.business_name
+                        setnombC(nombreC)
+                        ValidarinputNombC(nombreC, val)
+                        setlblinputNameC('Nombre de Empresa o institucion')
+                        setinvisibleAp1C("visible col-md-2")
+                        setlblinputNameC('Nombre de Empresa o institucion')
+                        setlblapell1C('Nombre de Fantasía (Opcional)')
+                        setapell1C('')
+                        console.log('si no hay nombre de fantasia')
+                    } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
+                        const nombreE = Comer?.business_name
+                        const nombreF = Comer?.fantasy_name
+                        setinvisibleAp1("visible col-md-2")
+                        setlblinputName('Nombre de Empresa o institucion')
+                        setlblapell1A('Nombre de Fantasía (Opcional)')
+                        setnombA(nombreE)
+                        setapell1A(nombreF)
+                        //ValidarinputNomb(nombreF, ub)
+                    }else if (((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) && (Comer?.business_name == null)) {
+                        const nombreE = Comer?.business_name
+                        const nombreF = Comer?.fantasy_name
+                        setinvisibleAp1C("visible col-md-2")
+                        setlblinputNameC('Nombre de Empresa o institucion')
+                        setlblapell1C('Nombre de Fantasía (Opcional)')
+                        setnombC(nombreE)
+                        setapell1C(nombreF)
+                        //ValidarinputNomb(nombreF, ub)
+                    }
+                } else if ((ub == 2) && (selectNidC == 1)) {
+                    cargarDatosP(val, ub)
                 }
             })
     }
