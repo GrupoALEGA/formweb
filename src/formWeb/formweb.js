@@ -684,10 +684,7 @@ const CompFormWeb = () => {
                     (saclValid == 'is-valid') &&
                     (tlclValid == 'is-valid') &&
                     (emclValid == 'is-valid') &&
-                    (idclValidC == 'is-valid') &&
-                    (nclValidC == 'is-valid') &&
-                    (paclValidC == 'is-valid') &&
-                    (saclValidC == 'is-valid')
+                    (idclValidC == 'is-valid')
                 ) {
                     console.log('Todo es valido')
                     EnviarDatos()
@@ -701,9 +698,7 @@ const CompFormWeb = () => {
                     (saclValid == 'is-valid') &&
                     (tlclValid == 'is-valid') &&
                     (emclValid == 'is-valid') &&
-                    (idclValidC == 'is-valid') &&
-                    (nclValidC == 'is-valid') &&
-                    (saclValidC == 'is-valid')
+                    (idclValidC == 'is-valid')
                 ) {
                     console.log('Todo es valido')
                     EnviarDatos()
@@ -716,9 +711,7 @@ const CompFormWeb = () => {
                     (saclValid == 'is-valid') &&
                     (tlclValid == 'is-valid') &&
                     (emclValid == 'is-valid') &&
-                    (idclValidC == 'is-valid') &&
-                    (nclValidC == 'is-valid') &&
-                    (saclValidC == 'is-valid')
+                    (idclValidC == 'is-valid')
                 ) {
                     console.log('Todo es valido')
                     EnviarDatos()
