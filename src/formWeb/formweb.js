@@ -165,7 +165,7 @@ const CompFormWeb = () => {
         const valor = val
         settdiA(tID)
         validarselectinputCed(valor)
-        limpiardatosC()
+        limpiardatosA()
 
         switch (valor) {
             case 1:
@@ -1051,6 +1051,7 @@ const CompFormWeb = () => {
                 <div className="row my-3 ms-1">
                     <div className="my-3">
                         <h3>Datos de Comerciante</h3>
+                        <h5 className="text-secondary" >Nota: Si no cuenta con la cédula Jurídica del comerciante por favor ingrese solamente el nombre de Fantasía</h5>
                     </div>
                     <div className="col-md-2">
                         <label htmlFor="input_TIDC" className="form-label">Tipo de identificación</label>
