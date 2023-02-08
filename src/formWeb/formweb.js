@@ -67,6 +67,8 @@ const CompFormWeb = () => {
     const [ nombC, setnombC ] = useState()
     const [ apell1C, setapell1C ] = useState()
     const [ apell2C, setapell2C ] = useState()
+    const [ lblPHNombFantacy, setlblPHNombFantacy ] = useState()
+    const [ lblPHNombFantacyC, setlblPHNombFantacyC ] = useState()
 
     //useState para los Select
     const [ selectNidA, setselectNidA ] = useState(0)
@@ -177,6 +179,7 @@ const CompFormWeb = () => {
                 setclassdivDNI("col-md-2")
                 setinvisibleAp1("visible col-md-2")
                 setinvisibleAp2("visible col-md-2")
+                setlblPHNombFantacy('')
                 break
 
             case 2:
@@ -188,6 +191,7 @@ const CompFormWeb = () => {
                 setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
+                setlblPHNombFantacy('')
                 break
 
             case 3:
@@ -200,6 +204,7 @@ const CompFormWeb = () => {
                 setapell2A("Desconocido")
                 setclassdivnomb("col-md-5")
                 setclassdivDNI("col-md-3")
+                setlblPHNombFantacy('Nota: digite solamente el nombre del comercio en el campo nombre de fantasía si no conoce la cédula juridica.')
                 break
 
             case 4:
@@ -211,6 +216,7 @@ const CompFormWeb = () => {
                 setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
+                setlblPHNombFantacy('')
                 break
         }
     }
@@ -240,6 +246,7 @@ const CompFormWeb = () => {
                 setclassdivDNIC("col-md-2")
                 setinvisibleAp1C("visible col-md-2")
                 setinvisibleAp2C("visible col-md-2")
+                setlblPHNombFantacyC('')
                 break
 
             case 2:
@@ -251,6 +258,7 @@ const CompFormWeb = () => {
                 setinvisibleAp2C("visible col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
+                setlblPHNombFantacyC('')
                 break
 
             case 3:
@@ -263,6 +271,7 @@ const CompFormWeb = () => {
                 setapell2C("Desconocido")
                 setclassdivnombC("col-md-5")
                 setclassdivDNIC("col-md-3")
+                setlblPHNombFantacyC('Nota: digite solamente el nombre del comercio en el campo nombre de fantasía si no conoce la cédula juridica.')
                 break
 
             case 4:
@@ -274,6 +283,7 @@ const CompFormWeb = () => {
                 setinvisibleAp2C("visible col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
+                setlblPHNombFantacyC('')
                 break
         }
     }
@@ -916,7 +926,7 @@ const CompFormWeb = () => {
                         setnombA(nombreE)
                         setapell1A(nombreF)
                         //ValidarinputNomb(nombreF, ub)
-                    }else if (((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) && (Comer?.business_name == null)) {
+                    } else if (((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) && (Comer?.business_name == null)) {
                         const nombreE = Comer?.business_name
                         const nombreF = Comer?.fantasy_name
                         setinvisibleAp1C("visible col-md-2")
@@ -965,6 +975,9 @@ const CompFormWeb = () => {
                         <input name="nombre" type="text" className={`form-control ${nclValid}`} readOnly={onlyRnombA} id="inputName" value={nombA} onChange={(e) => ValidarinputNomb(e.target.value, "1")} disabled={dehabil} required />
                         <div className="invalid-feedback">
                             {fbNameA}
+                        </div>
+                        <div className="fs-6 fw-bold lh-1 text-danger">
+                            {lblPHNombFantacy}
                         </div>
                     </div>
                     <div id="divinput1erAp" className={invisibleAp1}>
@@ -1051,7 +1064,6 @@ const CompFormWeb = () => {
                 <div className="row my-3 ms-1">
                     <div className="my-3">
                         <h3>Datos de Comerciante</h3>
-                        <h5 className="text-secondary" >Nota: Si no cuenta con la cédula Jurídica del comerciante por favor ingrese solamente el nombre de Fantasía</h5>
                     </div>
                     <div className="col-md-2">
                         <label htmlFor="input_TIDC" className="form-label">Tipo de identificación</label>
@@ -1079,6 +1091,9 @@ const CompFormWeb = () => {
                         <input name="nombrec" type="text" className={`form-control ${nclValidC}`} readOnly={onlyRnombC} id="inputNameC" value={nombC} onChange={(e) => ValidarinputNombC(e.target.value, "2")} disabled={dehabilnombC} required />
                         <div className="invalid-feedback">
                             {fbNameC}
+                        </div>
+                        <div className="fs-6 fw-bold lh-1 text-danger">
+                            {lblPHNombFantacyC}
                         </div>
                     </div>
                     <div id="divinput1erApC" className={invisibleAp1C}>
