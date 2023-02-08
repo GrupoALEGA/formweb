@@ -10,6 +10,7 @@ import es from 'date-fns/locale/es'
 
 
 const URI = 'https://fwmback-production.up.railway.app/'
+const URIEMAIL = 'http://127.0.0.1:3005/sendemail'
 
 const CompFormWeb = () => {
     //#region UseStates
@@ -23,8 +24,10 @@ const CompFormWeb = () => {
     const [ token, setToken ] = useState(null)
 
 
-    const EnviarDatos = () => {
+    const EnviarDatos = async () => {
         alert('Numero de consulta: 20023, pronto recibira un correo')
+        const gcorreo = ``
+        const res = await axios.post(URIEMAIL + '/' + gcorreo)
     }
 
 
@@ -97,10 +100,10 @@ const CompFormWeb = () => {
     const [ onlyRapell2C, setonlyRapell2C ] = useState(false)
 
     //useStaret para ocultar campos
-    const [ invisibleAp1, setinvisibleAp1 ] = useState("visible col-md-2")
-    const [ invisibleAp2, setinvisibleAp2 ] = useState("visible col-md-2")
-    const [ invisibleAp1C, setinvisibleAp1C ] = useState("visible col-md-2")
-    const [ invisibleAp2C, setinvisibleAp2C ] = useState("visible col-md-2")
+    const [ invisibleAp1, setinvisibleAp1 ] = useState("d-block col-md-2")
+    const [ invisibleAp2, setinvisibleAp2 ] = useState("d-block col-md-2")
+    const [ invisibleAp1C, setinvisibleAp1C ] = useState("d-block col-md-2")
+    const [ invisibleAp2C, setinvisibleAp2C ] = useState("d-block col-md-2")
     const [ classdivnomb, setclassdivnomb ] = useState("col-md-2")
     const [ classdivnombC, setclassdivnombC ] = useState("col-md-2")
     const [ classdivDNI, setclassdivDNI ] = useState("col-md-3")
@@ -177,8 +180,8 @@ const CompFormWeb = () => {
                 setfbapell1A('Por favor, ingrese su primer apellido.')
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
-                setinvisibleAp1("visible col-md-2")
-                setinvisibleAp2("visible col-md-2")
+                setinvisibleAp1("d-block col-md-2")
+                setinvisibleAp2("d-block col-md-2")
                 //setlblPHNombFantacy('')
                 break
 
@@ -187,8 +190,8 @@ const CompFormWeb = () => {
                 setlblapell1A("Primer Apellido")
                 setfbNameA('Por favor, ingrese su nombre.')
                 setfbapell1A('Por favor, ingrese su primer apellido.')
-                setinvisibleAp1("visible col-md-2")
-                setinvisibleAp2("visible col-md-2")
+                setinvisibleAp1("d-block col-md-2")
+                setinvisibleAp2("d-block col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
                 //setlblPHNombFantacy('')
@@ -196,8 +199,8 @@ const CompFormWeb = () => {
 
             case 3:
                 setlblinputName('Nombre de Fantasía (Opcional)')
-                setinvisibleAp1("invisible col-md-1")
-                setinvisibleAp2("invisible col-md-1")
+                setinvisibleAp1("d-none col-md-1")
+                setinvisibleAp2("d-none col-md-1")
                 setfbNameA('')
                 setfbapell1A('')
                 setapell1A("Desconocido")
@@ -212,8 +215,8 @@ const CompFormWeb = () => {
                 setlblapell1A("Primer Apellido")
                 setfbNameA('Por favor, ingrese su nombre.')
                 setfbapell1A('Por favor, ingrese su primer apellido.')
-                setinvisibleAp1("visible col-md-2")
-                setinvisibleAp2("visible col-md-2")
+                setinvisibleAp1("d-block col-md-2")
+                setinvisibleAp2("d-block col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
                 //setlblPHNombFantacy('')
@@ -244,8 +247,8 @@ const CompFormWeb = () => {
                 setfbapell1C('Por favor, ingrese su primer apellido.')
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
-                setinvisibleAp1C("visible col-md-2")
-                setinvisibleAp2C("visible col-md-2")
+                setinvisibleAp1C("d-block col-md-2")
+                setinvisibleAp2C("d-block col-md-2")
                 setlblPHNombFantacyC('')
                 break
 
@@ -254,8 +257,8 @@ const CompFormWeb = () => {
                 setlblapell1C("Primer Apellido")
                 setfbNameC('Por favor, ingrese su nombre.')
                 setfbapell1C('Por favor, ingrese su primer apellido.')
-                setinvisibleAp1C("visible col-md-2")
-                setinvisibleAp2C("visible col-md-2")
+                setinvisibleAp1C("d-block col-md-2")
+                setinvisibleAp2C("d-block col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
                 setlblPHNombFantacyC('')
@@ -265,8 +268,8 @@ const CompFormWeb = () => {
                 setlblinputNameC('Nombre de Fantasía (Opcional)')
                 setfbNameC('')
                 setfbapell1C('')
-                setinvisibleAp1C("invisible col-md-1")
-                setinvisibleAp2C("invisible col-md-1")
+                setinvisibleAp1C("d-none col-md-1")
+                setinvisibleAp2C("d-none col-md-1")
                 setapell1C("Desconocido")
                 setapell2C("Desconocido")
                 setclassdivnombC("col-md-5")
@@ -279,8 +282,8 @@ const CompFormWeb = () => {
                 setlblapell1C("Primer Apellido")
                 setfbNameC('Por favor, ingrese su nombre.')
                 setfbapell1C('Por favor, ingrese su primer apellido.')
-                setinvisibleAp1C("visible col-md-2")
-                setinvisibleAp2C("visible col-md-2")
+                setinvisibleAp1C("d-block col-md-2")
+                setinvisibleAp2C("d-block col-md-2")
                 setclassdivnombC("col-md-2")
                 setclassdivDNIC("col-md-2")
                 setlblPHNombFantacyC('')
@@ -806,17 +809,14 @@ const CompFormWeb = () => {
 
     //Mostrar los cantones por provincia
     const getCants = async (v) => {
-        console.log('en getCant 1 ' + v)
         if (v != null) {
             setdeshabCant(false)
             setdeshabDist(true)
             const val = v
-            console.log(URI + 'cant/' + val)
             setidProv(val)
             const res = await axios.get(URI + 'cant/' + val)
             setCant(res.data)
             getDists()
-            console.log('en getCant 2 ' + v)
         } getDists(0)
     }
 
