@@ -67,7 +67,7 @@ const CompFormWeb = () => {
     const [ nombC, setnombC ] = useState()
     const [ apell1C, setapell1C ] = useState()
     const [ apell2C, setapell2C ] = useState()
-    const [ lblPHNombFantacy, setlblPHNombFantacy ] = useState()
+    //const [ lblPHNombFantacy, setlblPHNombFantacy ] = useState()
     const [ lblPHNombFantacyC, setlblPHNombFantacyC ] = useState()
 
     //useState para los Select
@@ -179,7 +179,7 @@ const CompFormWeb = () => {
                 setclassdivDNI("col-md-2")
                 setinvisibleAp1("visible col-md-2")
                 setinvisibleAp2("visible col-md-2")
-                setlblPHNombFantacy('')
+                //setlblPHNombFantacy('')
                 break
 
             case 2:
@@ -191,7 +191,7 @@ const CompFormWeb = () => {
                 setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
-                setlblPHNombFantacy('')
+                //setlblPHNombFantacy('')
                 break
 
             case 3:
@@ -204,7 +204,7 @@ const CompFormWeb = () => {
                 setapell2A("Desconocido")
                 setclassdivnomb("col-md-5")
                 setclassdivDNI("col-md-3")
-                setlblPHNombFantacy('Nota: digite solamente el nombre del comercio en el campo nombre de fantasía si no conoce la cédula juridica.')
+                //setlblPHNombFantacy('Nota: digite solamente el nombre del comercio en el campo nombre de fantasía si no conoce la cédula juridica.')
                 break
 
             case 4:
@@ -216,7 +216,7 @@ const CompFormWeb = () => {
                 setinvisibleAp2("visible col-md-2")
                 setclassdivnomb("col-md-2")
                 setclassdivDNI("col-md-2")
-                setlblPHNombFantacy('')
+                //setlblPHNombFantacy('')
                 break
         }
     }
@@ -975,9 +975,6 @@ const CompFormWeb = () => {
                         <input name="nombre" type="text" className={`form-control ${nclValid}`} readOnly={onlyRnombA} id="inputName" value={nombA} onChange={(e) => ValidarinputNomb(e.target.value, "1")} disabled={dehabil} required />
                         <div className="invalid-feedback">
                             {fbNameA}
-                        </div>
-                        <div className="fs-6 fw-bold lh-1 text-danger">
-                            {lblPHNombFantacy}
                         </div>
                     </div>
                     <div id="divinput1erAp" className={invisibleAp1}>
