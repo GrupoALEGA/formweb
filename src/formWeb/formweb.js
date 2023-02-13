@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import axios from 'axios'
 
@@ -246,7 +246,7 @@ const CompFormWeb = () => {
                 setfbNameC('Por favor, ingrese su nombre.')
                 setfbapell1C('Por favor, ingrese su primer apellido.')
                 setclassdivnombC("col-md-2")
-                setclassdivDNIC("col-md-2")
+                setclassdivDNIC("col-md-2 d-block")
                 setinvisibleAp1C("d-block col-md-2")
                 setinvisibleAp2C("d-block col-md-2")
                 setlblPHNombFantacyC('')
@@ -260,7 +260,7 @@ const CompFormWeb = () => {
                 setinvisibleAp1C("d-block col-md-2")
                 setinvisibleAp2C("d-block col-md-2")
                 setclassdivnombC("col-md-2")
-                setclassdivDNIC("col-md-2")
+                setclassdivDNIC("col-md-2 d-block")
                 setlblPHNombFantacyC('')
                 break
 
@@ -273,7 +273,7 @@ const CompFormWeb = () => {
                 setapell1C("Desconocido")
                 setapell2C("Desconocido")
                 setclassdivnombC("col-md-5")
-                setclassdivDNIC("col-md-3")
+                setclassdivDNIC("col-md-3 d-block")
                 setlblPHNombFantacyC('Nota: digite solamente el nombre del comercio en el campo nombre de fantasía si no conoce la cédula juridica.')
                 break
 
@@ -285,7 +285,19 @@ const CompFormWeb = () => {
                 setinvisibleAp1C("d-block col-md-2")
                 setinvisibleAp2C("d-block col-md-2")
                 setclassdivnombC("col-md-2")
-                setclassdivDNIC("col-md-2")
+                setclassdivDNIC("col-md-2 d-block")
+                setlblPHNombFantacyC('')
+                break
+
+            case 5:
+                setlblinputNameC("Nombre de Fantasía (Opcional)")
+                setlblapell1C("")
+                setfbNameC('')
+                setfbapell1C('')
+                setinvisibleAp1C("d-none col-md-2")
+                setinvisibleAp2C("d-none col-md-2")
+                setclassdivnombC("col-md-8")
+                setclassdivDNIC("col-md-2 d-none")
                 setlblPHNombFantacyC('')
                 break
         }
@@ -350,18 +362,19 @@ const CompFormWeb = () => {
 
     //Validacion del campo inputTel
     const ValidarinputTel = (val) => {
-        console.log(val)
         const valor = val
         setTel(valor)
         const resp = (/^[0-9]{8}$/.test(valor))
+        console.log(val, resp)
         if ((resp) && (valor.toString().length >= 8)) {
-            console.log(resp)
             settlClValid('is-valid')
-
             setdeshabProv(false)
             getProvs()
+            let tele = val
+            tele = tele.toString().slice(0, 4)+ "-" + tele.toString().slice(4)
+            console.log(tele)
+            setTel(tele)            
         } else {
-            console.log(resp)
             settlClValid('is-invalid')
         }
     }
@@ -404,7 +417,14 @@ const CompFormWeb = () => {
             const Ced = (ced == 1) ? ndiA : ced
             setnombA(valor)
             if (valor.toString().length >= 1) {
-                if (Ced.toString().length == 9) {
+                if (ced == 1) {
+                    const resp = validarText(valor)
+                    if (resp) {
+                        setnClValid('is-valid')
+                    } else {
+                        setnClValid('is-invalid')
+                    }
+                } else if (Ced.toString().length == 9) {
                     const resp = validarText(valor)
                     if (resp) {
                         setnClValid('is-valid')
@@ -487,9 +507,15 @@ const CompFormWeb = () => {
             const valor = val
             const Ced = (ced == 2) ? ndiA : ced
             setnombC(valor)
-            console.log(val, ced)
             if (valor.toString().length >= 1) {
-                if (Ced.toString().length == 9) {
+                if (ced == 2) {
+                    const resp = validarText(valor)
+                    if (resp) {
+                        setnClValidC('is-valid')
+                    } else {
+                        setnClValidC('is-invalid')
+                    }
+                } else if (Ced.toString().length == 9) {
                     const resp = validarText(valor)
                     if (resp) {
                         setnClValidC('is-valid')
@@ -587,18 +613,15 @@ const CompFormWeb = () => {
         setndiA(valor)
         if (ub == 1) {
             if (selectNidA === 1) {
-                console.log(val)
                 const resp = (/^[0-9]{9}$/.test(valor))
                 if ((resp) && (valor.toString().length === 9)) {
                     setidClValid("is-valid")
                     cargarDatosP(val, ub)
                 } else {
                     setidClValid("is-invalid")
-                    if ((setselectNidA == 1) || (setselectNidA == 3)) {
-                        setnClValid("is-invalid")
-                        setpaClValid("is-invalid")
-                        setsaClValid("is-invalid")
-                    }
+                    setnClValid("")
+                    setpaClValid("")
+                    setsaClValid("")
                     setnombA('')
                     setapell1A('')
                     setapell2A('')
@@ -615,13 +638,9 @@ const CompFormWeb = () => {
                     document.getElementById("errorCed").innerHTML = ""
                 }
             } else if (selectNidA === 3) {
-                console.log('valor 3')
-                console.log("valor =", val, ub)
                 const resp = (/^[a-zA-Z0-9]{10}$/.test(val))
-                console.log(resp)
                 if ((resp) && (valor.toString().length === 10)) {
                     setidClValid("is-valid")
-                    console.log('vamos a cargar datos')
                     cargarDatosC(valor, 1)
                 } else {
                     setidClValid("is-invalid")
@@ -661,11 +680,9 @@ const CompFormWeb = () => {
                     cargarDatosP(val, ub)
                 } else {
                     setidClValidC("is-invalid")
-                    if ((setselectNidA == 1) || (setselectNidA == 3)) {
-                        setnClValidC("is-invalid")
-                        setpaClValidC("is-invalid")
-                        setsaClValidC("is-invalid")
-                    }
+                    setnClValidC("")
+                    setpaClValidC("")
+                    setsaClValidC("")
                     setnombC('')
                     setapell1C('')
                     setapell2C('')
@@ -850,8 +867,7 @@ const CompFormWeb = () => {
                     setnombA(nombre)
                     setapell1A(Perso?.first_last_name)
                     setapell2A(Perso?.second_last_name)
-                    console.log(nombre)
-                    ValidarinputNomb(nombre, 1)
+                    ValidarinputNomb(nombre, val)
                     ValidarinputApp1(Perso?.first_last_name)
                     ValidarinputApp2(Perso?.second_last_name.trimEnd())
                 } else if ((ub == 2) && (selectNidC == 1)) {
@@ -881,15 +897,11 @@ const CompFormWeb = () => {
                         const nombreA = Comer?.business_name
                         setnombA(nombreA)
                         ValidarinputNomb(nombreA, val)
-                        setinvisibleAp1("visible col-md-2")
                         setlblinputName('Nombre de Empresa o institucion')
-                        setlblapell1A('Nombre de Fantasía (Opcional)')
-                        setapell1A('')
-                        console.log('si no hay nombre de fantasia')
                     } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
                         const nombreE = Comer?.business_name
                         const nombreF = Comer?.fantasy_name
-                        setinvisibleAp1("visible col-md-2")
+                        setinvisibleAp1("d-block col-md-4")
                         setlblinputName('Nombre de Empresa o institucion')
                         setlblapell1A('Nombre de Fantasía (Opcional)')
                         setnombA(nombreE)
@@ -898,7 +910,7 @@ const CompFormWeb = () => {
                     } else if (((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) && (Comer?.business_name == null)) {
                         const nombreE = Comer?.business_name
                         const nombreF = Comer?.fantasy_name
-                        setinvisibleAp1("visible col-md-2")
+                        setinvisibleAp1("d-block col-md-4")
                         setlblinputName('Nombre de Empresa o institucion')
                         setlblapell1A('Nombre de Fantasía (Opcional)')
                         setnombA(nombreE)
@@ -912,7 +924,7 @@ const CompFormWeb = () => {
                         setnombC(nombreC)
                         ValidarinputNombC(nombreC, val)
                         setlblinputNameC('Nombre de Empresa o institucion')
-                        setinvisibleAp1C("visible col-md-2")
+                        setinvisibleAp1C("d-block col-md-4")
                         setlblinputNameC('Nombre de Empresa o institucion')
                         setlblapell1C('Nombre de Fantasía (Opcional)')
                         setapell1C('')
@@ -920,7 +932,7 @@ const CompFormWeb = () => {
                     } else if ((Comer?.fantasy_name != 'NULL') || (Comer?.fantasy_name != null) || (Comer?.fantasy_name != 'NA') || (Comer?.fantasy_name != 'N/A')) {
                         const nombreE = Comer?.business_name
                         const nombreF = Comer?.fantasy_name
-                        setinvisibleAp1("visible col-md-2")
+                        setinvisibleAp1("d-block col-md-4")
                         setlblinputName('Nombre de Empresa o institucion')
                         setlblapell1A('Nombre de Fantasía (Opcional)')
                         setnombA(nombreE)
@@ -929,7 +941,7 @@ const CompFormWeb = () => {
                     } else if (((Comer?.fantasy_name == 'NULL') || (Comer?.fantasy_name == null) || (Comer?.fantasy_name == 'NA') || (Comer?.fantasy_name == 'N/A')) && (Comer?.business_name == null)) {
                         const nombreE = Comer?.business_name
                         const nombreF = Comer?.fantasy_name
-                        setinvisibleAp1C("visible col-md-2")
+                        setinvisibleAp1C("d-block col-md-4")
                         setlblinputNameC('Nombre de Empresa o institucion')
                         setlblapell1C('Nombre de Fantasía (Opcional)')
                         setnombC(nombreE)
@@ -950,7 +962,7 @@ const CompFormWeb = () => {
             <form id="formulario" className="g-3 me-3 needs-validation" noValidate action='#' required>
                 <div className="row my-3 ms-1">
                     <div className="my-3">
-                        <h3>Datos de persona afectada</h3>
+                        <h3 className="clrTitle">Datos de persona afectada</h3>
                     </div>
                     <div className="col-md-3">
                         <label htmlFor="input_TID" className="form-label">Tipo de identificación</label>
@@ -1002,7 +1014,7 @@ const CompFormWeb = () => {
                         <span id="erroremail" className="fs-6"></span>
                     </div>
                     <div className="col-md-4">
-                        <label htmlFor="inputTel" className="form-label">Telefono (sin guiones)</label>
+                        <label htmlFor="inputTel" className="form-label">Telefono (1234 - 5678)</label>
                         <input name="tel" type="text" className={`form-control ${tlclValid}`} id="inputTel" value={tel} required disabled={dehabil} onChange={(e) => ValidarinputTel(e.target.value)} />
                         <div className="invalid-feedback">
                             Por favor, ingrese un numero de telefono valido.
@@ -1012,10 +1024,10 @@ const CompFormWeb = () => {
                 </div>
                 <div className="row my-3 ms-1">
                     <div className="my-3">
-                        <h3>Ubicación Geográfica</h3>
+                        <h3 className="clrTitle">Ubicación Geográfica</h3>
                     </div>
                     <div className="col-md-4">
-                        <label htmlFor="inputprov" className="form-label">Provicia</label>
+                        <label htmlFor="inputprov" className="form-label">Provincia</label>
                         <select name="prov" id="inputprov" className="form-select" disabled={deshabProv} value={ubProv} onChange={(e) => getCants(e.target.value)} required>
                             <option defaultValue="DEFAULT" value="0">Seleccione...</option>
                             {prov?.map((prov) => (
@@ -1028,7 +1040,7 @@ const CompFormWeb = () => {
                         </div>
                     </div>
                     <div className="col-md-4">
-                        <label htmlFor="inputcant" className="form-label">Canton</label>
+                        <label htmlFor="inputcant" className="form-label">Cantón</label>
                         <select name="cant" id="inputcant" className="form-select" disabled={deshabCant} value={ubCant} onChange={(e) => getDists(e.target.value)} required>
                             <option defaultValue="DEFAULT" value="0">Seleccione...</option>
                             {
@@ -1060,9 +1072,9 @@ const CompFormWeb = () => {
                 </div>
                 <div className="row my-3 ms-1">
                     <div className="my-3">
-                        <h3>Datos de Comerciante</h3>
+                        <h3 className="clrTitle">Datos de Comerciante</h3>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-3">
                         <label htmlFor="input_TIDC" className="form-label">Tipo de identificación</label>
                         <select name="vtidc" id="input_TIDC" defaultValue={selectNidC} className="form-select" disabled={dehabil} onChange={(e) => input_TIDCchange(e.target.selectedIndex, e.target.value)} required>
                             <option defaultValue="DEFAULT" value="0" disabled >Seleccione...</option>
@@ -1070,6 +1082,7 @@ const CompFormWeb = () => {
                             <option defaultValue="2">Pasaporte</option>
                             <option defaultValue="3">Cédula Jurídica</option>
                             <option defaultValue="4">DIMEX</option>
+                            <option defaultValue="5">NO INDICA</option>
                         </select>
                         <div className="invalid-feedback">
                             Por favor, selecione una opcion.
@@ -1090,7 +1103,6 @@ const CompFormWeb = () => {
                             {fbNameC}
                         </div>
                         <div className="fs-6 fw-bold lh-1 text-danger">
-                            {lblPHNombFantacyC}
                         </div>
                     </div>
                     <div id="divinput1erApC" className={invisibleAp1C}>
@@ -1110,7 +1122,7 @@ const CompFormWeb = () => {
                 </div>
                 <div className="row my-3 ms-1">
                     <div className="my-3">
-                        <h3>Datos del Evento</h3>
+                        <h3 className="clrTitle">Datos del Evento</h3>
                     </div>
                     <div className="col-md-5">
                         <label htmlFor="inputFComp" className="form-label">Fecha De Compra O Incumplimiento</label>
